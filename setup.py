@@ -5,7 +5,7 @@ import os
 import sys
 import tempfile
 
-REMOTE_TREC_EVAL_URI = 'https://github.com/usnistgov/trec_eval/archive/v9.0.8.tar.gz'
+REMOTE_TREC_EVAL_URI = '/workspace/data2/playground/v9.0.8.tar.gz'
 
 REMOTE_TREC_EVAL_TLD_NAME = 'trec_eval-9.0.8'
 
@@ -23,20 +23,10 @@ with tempfile.TemporaryDirectory() as tmp_dir:
 
         import io
         import urllib.request
+        import tarfile
 
-        response = urllib.request.urlopen(REMOTE_TREC_EVAL_URI)
-        mmap_f = io.BytesIO(response.read())
-
-        if REMOTE_TREC_EVAL_URI.endswith('.zip'):
-            import zipfile
-
-            trec_eval_archive = zipfile.ZipFile(mmap_f)
-        elif REMOTE_TREC_EVAL_URI.endswith('.tar.gz'):
-            import tarfile
-
-            trec_eval_archive = tarfile.open(fileobj=mmap_f)
-
-        trec_eval_archive.extractall(tmp_dir)
+        with tarfile.open(local_tar_gz_path, 'r:gz') as trec_eval_archive:
+            trec_eval_archive.extractall(tmp_dir)
 
         trec_eval_dir = os.path.join(tmp_dir, REMOTE_TREC_EVAL_TLD_NAME)
 
