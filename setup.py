@@ -5,7 +5,7 @@ import os
 import sys
 import tempfile
 
-REMOTE_TREC_EVAL_URI = '/workspace/data2/playground/v9.0.8.tar.gz'
+REMOTE_TREC_EVAL_URI = '/workspace/data2/playground/trec_eval-9.0.8.tar.gz'
 
 REMOTE_TREC_EVAL_TLD_NAME = 'trec_eval-9.0.8'
 
