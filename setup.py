@@ -25,7 +25,7 @@ with tempfile.TemporaryDirectory() as tmp_dir:
         import urllib.request
         import tarfile
 
-        with tarfile.open(local_tar_gz_path, 'r:gz') as trec_eval_archive:
+        with tarfile.open(REMOTE_TREC_EVAL_URI, 'r:gz') as trec_eval_archive:
             trec_eval_archive.extractall(tmp_dir)
 
         trec_eval_dir = os.path.join(tmp_dir, REMOTE_TREC_EVAL_TLD_NAME)
